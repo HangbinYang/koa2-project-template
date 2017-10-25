@@ -1,9 +1,35 @@
 'use strict'
 
-const router = require('koa-router')()
+const router = require('koa-joi-router')()
+const Joi = require('koa-joi-router').Joi
 
-router.get('/', ctx => {
-  ctx.body = 'Hello'
+const validator = require('joi-validate-generator')
+const controller = require('../src/controllers/example.controller')
+
+router.get('/', async ctx => {
+  this.body = 'Hello'
+})
+
+router.route({
+  method: 'get',
+  path: '/validation',
+  validate: validator.queryBody({
+    name: Joi.string()
+  }),
+  handler: [
+    controller.example
+  ]
+})
+
+router.route({
+  method: 'post',
+  path: '/validation',
+  validate: validator.jsonBody({
+
+  }),
+  handler: [
+    controller.example
+  ]
 })
 
 

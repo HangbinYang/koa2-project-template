@@ -5,11 +5,14 @@ const koa = require('koa')
 const session = require('koa-session')
 const redis = require('koa-redis')
 const mongoose = require('mongoose')
+const onerror = require('koa-onerror')
 const router = require('./routes/router')
 
 const app = new koa()
-app.use(require('koa-response-time')())
 
+onerror(app);
+
+app.use(require('koa-response-time')())
 /** session configuration */
 app.keys = config.redis.keys
 app.use(session({
@@ -34,12 +37,11 @@ mongoose.connect(config.mongo, {
 /** cors configuration */
 app.use(require('@koa/cors')())
 
-/** body parser for koa */
-app.use(require('koa-bodyparser')())
+/** the response configuration */
+
 
 /** routes configuration */
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.use(router.middleware())
 
 app.use(require('koa-compress')())
 
