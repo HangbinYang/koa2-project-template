@@ -22,7 +22,7 @@ A project template for koa2
 
 ## Usage
 
-Make sure you have installed:
+Make sure you have already installed:
 
 + Mongodb
 + Redis
