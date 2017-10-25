@@ -1,20 +1,20 @@
 'use strict'
 
-const config = require('./config')
-const koa = require('koa')
-const session = require('koa-session')
-const redis = require('koa-redis')
 const mongoose = require('mongoose')
-const onerror = require('koa-onerror')
+const compress = require('koa-compress')
 const response = require('koa-usual-response')
+const session = require('koa-session')
+const restime = require('koa-response-time')
 const helmet = require('koa-helmet')
+const koa = require('koa')
+const redis = require('koa-redis')
+const cors = require('@koa/cors')
 
+const config = require('./config')
 const router = require('./routes/router')
 const app = new koa()
 
-onerror(app);
-
-app.use(require('koa-response-time')())
+app.use(restime())
 /** session configuration */
 app.keys = config.redis.keys
 app.use(session({
@@ -37,19 +37,23 @@ mongoose.connect(config.mongo, {
 })
 
 /** cors configuration */
-app.use(require('@koa/cors')())
-
-/** the response configuration */
-app.use(response())
+app.use(cors())
 
 /** helmet */
 app.use(helmet())
+
+/** 
+ * The response configuration 
+ * This module will handle global errors
+ * then response friendly
+ */
+app.use(response())
 
 /** routes configuration */
 app.use(router.middleware())
 
 /** data compress */
-app.use(require('koa-compress')())
+app.use(compress())
 
 app.listen(config.port, () => {
   console.log(`server startup at port: ${config.port}`)

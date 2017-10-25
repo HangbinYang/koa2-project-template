@@ -6,30 +6,38 @@ const validator = require('joi-validate-utils')
 
 const controller = require('../src/controllers/example.controller')
 
-router.get('/', async ctx => {
-  this.body = 'Hello'
-})
-
 router.route({
   method: 'get',
-  path: '/validation',
-  validate: validator.queryBody({
-    name: Joi.string()
-  }),
+  path: '/example',
   handler: [
-    validator.invalidHandler,
-    controller.example
+    controller.getExample
   ]
 })
 
 router.route({
   method: 'post',
-  path: '/validation',
+  path: '/example/create',
   validate: validator.jsonBody({
-
+    name: Joi.string().optional().allow('').default('example'),
+    age: Joi.number().optional().default(23)
   }),
   handler: [
-    controller.example
+    validator.invalidHandler,
+    controller.insertExample
+  ]
+})
+
+router.route({
+  method: 'post',
+  path: '/example/update',
+  validate: validator.jsonBody({
+    _id: Joi.string().required(),
+    name: Joi.string().optional(),
+    age: Joi.number().optional()
+  }),
+  handler: [
+    validator.invalidHandler,
+    controller.updateExample
   ]
 })
 
