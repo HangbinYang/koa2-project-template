@@ -35,7 +35,11 @@ module.exports = {
      * mongoose will handle it correctly
      */
     await ExampleModel.update(query, operates)
-    // await ExampleModel.updateName(ctx.request.body._id, name)
+    /**
+     * ExampleModel static methods also can be used
+     * await ExampleModel.updateName(ctx.request.body._id, name)
+     */
+    
     ctx.success()
   }
 }
