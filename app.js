@@ -6,6 +6,7 @@ const session = require('koa-session')
 const redis = require('koa-redis')
 const mongoose = require('mongoose')
 const onerror = require('koa-onerror')
+const response = require('koa-usual-response')
 const router = require('./routes/router')
 
 const app = new koa()
@@ -38,7 +39,7 @@ mongoose.connect(config.mongo, {
 app.use(require('@koa/cors')())
 
 /** the response configuration */
-
+app.use(response())
 
 /** routes configuration */
 app.use(router.middleware())

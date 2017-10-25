@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@koa/cors": "^2.2.1",
+    "joi-validate-utils": "^1.0.0",
+    "jsonwebtoken": "^8.1.0",
     "koa": "^2.3.0",
     "koa-compress": "^2.0.0",
     "koa-helmet": "^3.2.0",
@@ -18,11 +20,9 @@
     "koa-onerror": "^3.1.0",
     "koa-redis": "^3.1.1",
     "koa-response-time": "^2.0.0",
-    "koa-router": "^7.2.1",
     "koa-session": "^5.5.0",
     "koa-static": "^4.0.1",
-    "mongoose": "^4.12.4",
-    "joi-validate-generator": "git+ssh://git@github.com:HangbinYang/joi-validate-generator.git#master",
-    "koa-usual-response": "git+ssh://git@github.com:HangbinYang/koa-usual-response.git#master"
+    "koa-usual-response": "^1.0.0",
+    "mongoose": "^4.12.4"
   }
 }

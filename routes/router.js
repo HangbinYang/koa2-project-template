@@ -2,8 +2,8 @@
 
 const router = require('koa-joi-router')()
 const Joi = require('koa-joi-router').Joi
+const validator = require('joi-validate-utils')
 
-const validator = require('joi-validate-generator')
 const controller = require('../src/controllers/example.controller')
 
 router.get('/', async ctx => {
@@ -17,6 +17,7 @@ router.route({
     name: Joi.string()
   }),
   handler: [
+    validator.invalidHandler,
     controller.example
   ]
 })
