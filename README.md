@@ -19,3 +19,19 @@ A project template for koa2
 + lodash ^4.17.4,
 + moment ^2.19.1,
 + mongoose ^4.12.4
+
+## Usage
+
+Make sure you have installed:
+
++ Mongodb
++ Redis
++ Pm2
+
+```javascript
+
+git clone git@github.com:HangbinYang/koa2-project-template.git
+npm install
+pm2 start ecosystem.config.js --env dev
+
+```
