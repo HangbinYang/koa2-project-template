@@ -29,7 +29,7 @@ app.use(session({
 
 /** mongodb configuration */
 mongoose.connect(config.mongo, {
-  /** auto build indexes in development environment */
+  /** auto build indexes in the development environment */
   autoIndex: process.env.NODE_ENV === 'production' ? false : true,
   promiseLibrary: global.Promise,
   useMongoClient: true,
