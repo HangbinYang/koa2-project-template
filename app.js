@@ -7,8 +7,9 @@ const redis = require('koa-redis')
 const mongoose = require('mongoose')
 const onerror = require('koa-onerror')
 const response = require('koa-usual-response')
-const router = require('./routes/router')
+const helmet = require('koa-helmet')
 
+const router = require('./routes/router')
 const app = new koa()
 
 onerror(app);
@@ -41,9 +42,13 @@ app.use(require('@koa/cors')())
 /** the response configuration */
 app.use(response())
 
+/** helmet */
+app.use(helmet())
+
 /** routes configuration */
 app.use(router.middleware())
 
+/** data compress */
 app.use(require('koa-compress')())
 
 app.listen(config.port, () => {
