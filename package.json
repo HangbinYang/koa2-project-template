@@ -27,6 +27,7 @@
     "moment": "^2.19.1",
     "mongoose": "^4.12.4",
     "passport-local": "^1.0.0",
+    "passport-wechat": "^2.0.4",
     "passport-weibo": "^0.1.2"
   }
 }
