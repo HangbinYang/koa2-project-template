@@ -17,6 +17,7 @@
     "koa-helmet": "^3.2.0",
     "koa-joi-router": "^5.0.0",
     "koa-jwt": "^3.2.2",
+    "koa-passport": "^4.0.1",
     "koa-redis": "^3.1.1",
     "koa-response-time": "^2.0.0",
     "koa-session": "^5.5.0",
@@ -24,6 +25,8 @@
     "koa-usual-response": "^1.0.2",
     "lodash": "^4.17.4",
     "moment": "^2.19.1",
-    "mongoose": "^4.12.4"
+    "mongoose": "^4.12.4",
+    "passport-local": "^1.0.0",
+    "passport-weibo": "^0.1.2"
   }
 }
