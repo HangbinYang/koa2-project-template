@@ -11,7 +11,6 @@ const cors = require('@koa/cors')
 const koa = require('koa')
 
 const config = require('./config')
-const passportService = require('./src/services/auth.service')
 const router = require('./routes/router')
 const app = new koa()
 
@@ -48,11 +47,6 @@ app.use(helmet())
  * then response friendly
  */
 app.use(response())
-
-/** authentication */
-const passport = passportService(router)
-app.use(passport.initialize())
-app.use(passport.session())
 
 /** routes configuration */
 app.use(router.middleware())
